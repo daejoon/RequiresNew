@@ -23,8 +23,6 @@ class UserServiceTest {
     @Autowired
     private UserRepository userRepository;
     @Autowired
-    private UserLogService userLogService;
-    @Autowired
     private UserLogRepository userLogRepository;
 
 
@@ -42,6 +40,27 @@ class UserServiceTest {
 
         // when
         Long userId = userService.save(user.getName(), user.getNickname(), user.getAge());
+        Optional<User> findUser = userRepository.findById(userId);
+        Iterable<UserLog> findLogList = userLogRepository.findAll();
+
+        // then
+        Assertions.assertThat(findUser).isPresent();
+        Assertions.assertThat(findLogList).isEmpty();
+    }
+
+    @Test
+    @DisplayName("try catch를 하지 않아도 예외가 전파되지 않는다")
+    void _try_catch를_하지_않아도_예외가_전파되지_않는다() {
+
+        // given
+        User user = User.builder()
+                        .name("test_user")
+                        .nickname("test_nickname")
+                        .age(38)
+                        .build();
+
+        // when
+        Long userId = userService.save2(user.getName(), user.getNickname(), user.getAge());
         Optional<User> findUser = userRepository.findById(userId);
         Iterable<UserLog> findLogList = userLogRepository.findAll();
 

@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
     private final UserRepository userRepository;
     private final UserLogService userLogService;
+    private final UserLogTryCatchService userLogTryCatchService;
 
 
     @Transactional
@@ -29,6 +30,20 @@ public class UserService {
         } catch (Exception e) {
             log.error("{}", e.getMessage());
         }
+
+        return user.getId();
+    }
+
+    @Transactional
+    public Long save2(String name, String nickname, int age) {
+        User user = User.builder()
+                        .name(name)
+                        .nickname(nickname)
+                        .age(age)
+                        .build();
+
+        userRepository.save(user);
+        userLogTryCatchService.save(user.getId(), user.getName(), user.getNickname(), user.getAge());
 
         return user.getId();
     }

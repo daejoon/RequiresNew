@@ -28,5 +28,4 @@ public class UserLogService {
             log.error("{}", e.getMessage());
         }
     }
-
 }
