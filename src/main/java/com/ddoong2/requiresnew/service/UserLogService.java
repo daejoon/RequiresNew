@@ -1,6 +1,5 @@
 package com.ddoong2.requiresnew.service;
 
-import com.ddoong2.requiresnew.model.User;
 import com.ddoong2.requiresnew.model.UserLog;
 import com.ddoong2.requiresnew.repository.UserLogRepository;
 import lombok.RequiredArgsConstructor;
@@ -16,9 +15,15 @@ public class UserLogService {
     private final UserLogRepository userLogRepository;
 
     @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void save(User user) {
+    public void save(Long userId, String name, String nickname, Integer age) {
         try {
-            userLogRepository.save(UserLog.CreateUserLog(user));
+            UserLog userLog = UserLog.builder()
+                                     .userId(userId)
+                                     .name(name)
+                                     .nickname(nickname)
+                                     .age(null)
+                                     .build();
+            userLogRepository.save(userLog);
         } catch (RuntimeException e) {
             log.error("{}", e.getMessage());
         }

@@ -16,7 +16,7 @@ public class UserService {
 
 
     @Transactional
-    public void save(String name, String nickname, int age) {
+    public Long save(String name, String nickname, int age) {
         User user = User.builder()
                         .name(name)
                         .nickname(nickname)
@@ -25,10 +25,12 @@ public class UserService {
 
         userRepository.save(user);
         try {
-            userLogService.save(user);
+            userLogService.save(user.getId(), user.getName(), user.getNickname(), user.getAge());
         } catch (Exception e) {
             log.error("{}", e.getMessage());
         }
+
+        return user.getId();
     }
 
 }
