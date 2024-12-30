@@ -15,19 +15,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserLogService {
     private final UserLogRepository userLogRepository;
 
-
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void save(User user) {
         try {
-            UserLog userLog = UserLog.builder()
-                                   .userId(user.getId())
-                                   .name(user.getName())
-                                   .nickname(user.getNickname())
-                                   .age(null)
-                                   .build();
-            userLogRepository.save(userLog);
+            userLogRepository.save(UserLog.CreateUserLog(user));
         } catch (RuntimeException e) {
-            log.error("{}", e.getStackTrace());
+            log.error("{}", e.getMessage());
         }
     }
 

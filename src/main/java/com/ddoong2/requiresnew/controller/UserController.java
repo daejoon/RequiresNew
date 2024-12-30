@@ -14,7 +14,7 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/user")
-    public void saveUser(@RequestBody User user) {
+    public void createUser(@RequestBody User user) {
         userService.save(user.getName(), user.getNickname(), user.getAge());
     }
 }

@@ -6,14 +6,14 @@ import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.context.annotation.Profile;
+import org.springframework.test.context.ActiveProfiles;
+import org.testcontainers.junit.jupiter.Testcontainers;
 
 import java.util.Optional;
 
-@Profile( "test")
-@AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
+@ActiveProfiles("test")
+@Testcontainers
 @DataJpaTest
 class UserRepositoryTest {
 
@@ -29,10 +29,10 @@ class UserRepositoryTest {
 
         // given
         User user = User.builder()
-                         .name("test_user")
-                         .nickname("test_nickname")
-                         .age(10)
-                         .build();
+                        .name("test_user")
+                        .nickname("test_nickname")
+                        .age(10)
+                        .build();
         em.persist(user);
         em.flush();
         em.clear();

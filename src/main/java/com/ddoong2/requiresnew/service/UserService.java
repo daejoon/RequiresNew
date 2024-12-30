@@ -27,7 +27,7 @@ public class UserService {
         try {
             userLogService.save(user);
         } catch (Exception e) {
-            log.error("{}", e.getStackTrace());
+            log.error("{}", e.getMessage());
         }
     }
 
