@@ -32,5 +32,14 @@ public class UserLog {
     private String nickname;
 
     @Column(nullable = false)
-    private int age;
+    private Integer age;
+
+    public static UserLog CreateUserLog(User user) {
+        return UserLog.builder()
+                      .userId(user.getId())
+                      .name(user.getName())
+                      .nickname(user.getNickname())
+                      .age(user.getAge())
+                      .build();
+    }
 }

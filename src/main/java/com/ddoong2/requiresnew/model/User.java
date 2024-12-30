@@ -29,5 +29,5 @@ public class User {
     private String nickname;
 
     @Column(nullable = false)
-    private int age;
+    private Integer age;
 }

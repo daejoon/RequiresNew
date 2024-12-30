@@ -1,5 +1,6 @@
 logging.level:
-  org.springframework.transaction.orm.jpa: TRACE
+  org.springframework.transaction: TRACE
+  org.springframework.orm.jpa: TRACE
   org.hibernate.SQL: DEBUG
   org.hibernate.orm.jdbc.bind: TRACE
   org.hibernate.type.descriptor: TRACE
