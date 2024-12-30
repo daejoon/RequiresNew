@@ -1,0 +1,10 @@
+spring.application.name: RequiresNew
+spring:
+  jpa:
+    database: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3306/testdb
+    username: test
+    password: test
+
+
