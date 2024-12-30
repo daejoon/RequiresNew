@@ -1,0 +1,11 @@
+logging.level:
+  org.springframework.transaction.orm.jpa: TRACE
+  org.hibernate.SQL: DEBUG
+  org.hibernate.orm.jdbc.bind: TRACE
+  org.hibernate.type.descriptor: TRACE
+
+### JPA
+spring.jpa:
+  hibernate:
+    ddl-auto: create-drop
+  generate-ddl: true
